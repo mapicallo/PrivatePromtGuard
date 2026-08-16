@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Privacy — PrivatePrompt Guard</title>
+  <style>
+    body { font-family: system-ui, sans-serif; max-width: 720px; margin: 2rem auto; padding: 0 1rem; line-height: 1.55; color: #0f172a; }
+    h1 { font-size: 1.5rem; } h2 { font-size: 1.1rem; margin-top: 1.5rem; }
+    a { color: #2563eb; }
+  </style>
+</head>
+<body>
+  <h1>Privacy policy — PrivatePrompt Guard</h1>
+  <p><strong>By AI4Context</strong> · Version 0.1 · Updated: 16 August 2026</p>
+  <p>PrivatePrompt Guard is a Chrome extension that reviews the text in the message box <em>just before you send</em> on ChatGPT, Claude, or Gemini web, to flag possible sensitive data. Analysis runs on your device.</p>
+
+  <h2>What is processed</h2>
+  <ul>
+    <li>Composer text on the AI page, only when you try to send.</li>
+    <li>Preferences (enabled, sensitivity, language, Nano assist) in <code>chrome.storage.local</code>.</li>
+  </ul>
+
+  <h2>What we do not do</h2>
+  <ul>
+    <li>We do not send your prompt content to AI4Context servers.</li>
+    <li>We do not monitor tabs in the background or read unrelated sites.</li>
+    <li>We do not sell data or run ads based on your prompts.</li>
+  </ul>
+
+  <h2>Permissions</h2>
+  <p>The extension only requests access to ChatGPT, Claude, and Gemini domains needed to read the composer and intercept send, plus local storage and the active tab when you open the popup.</p>
+
+  <h2>Optional on-device AI</h2>
+  <p>If you enable Gemini Nano assist (Chrome Prompt API) and it is available, some fragments may be classified on-device. If Nano is unavailable, only deterministic rules run.</p>
+
+  <h2>Limitations</h2>
+  <p>This is not enterprise DLP and may miss secrets. You decide whether to send after the warning.</p>
+
+  <h2>Contact</h2>
+  <p><a href="https://www.ai4context.com/#contact">ai4context.com — contact</a> · <a href="mailto:info@ai4context.com">info@ai4context.com</a></p>
+  <p><a href="privacy.html">Versión en español</a></p>
+</body>
+</html>

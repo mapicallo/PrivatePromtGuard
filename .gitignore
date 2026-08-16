@@ -1,0 +1,8 @@
+node_modules/
+dist/
+releases/*.zip
+.DS_Store
+*.log
+.idea/
+.vscode/
+*.local

@@ -1,0 +1,14 @@
+{
+  "name": "privateprompt-guard",
+  "private": true,
+  "version": "0.1.0",
+  "workspaces": [
+    "apps/extension"
+  ],
+  "scripts": {
+    "build": "npm run build -w @privateprompt-guard/extension",
+    "dev": "npm run dev -w @privateprompt-guard/extension",
+    "test": "npm run test -w @privateprompt-guard/extension",
+    "pack": "npm run pack -w @privateprompt-guard/extension"
+  }
+}

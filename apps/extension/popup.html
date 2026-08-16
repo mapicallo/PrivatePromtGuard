@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>PrivatePrompt Guard</title>
+    <style>
+      :root {
+        color-scheme: dark;
+        --bg: #0f172a;
+        --card: #1e293b;
+        --text: #e2e8f0;
+        --muted: #94a3b8;
+        --accent: #3b82f6;
+        --border: #334155;
+      }
+      * { box-sizing: border-box; }
+      body {
+        margin: 0;
+        width: 320px;
+        font-family: system-ui, Segoe UI, Roboto, sans-serif;
+        background: var(--bg);
+        color: var(--text);
+        font-size: 13px;
+      }
+      header {
+        padding: 14px 14px 8px;
+        border-bottom: 1px solid var(--border);
+      }
+      h1 { margin: 0; font-size: 15px; font-weight: 700; }
+      .brand { color: var(--muted); font-size: 11px; margin-top: 2px; }
+      main { padding: 12px 14px 16px; display: flex; flex-direction: column; gap: 12px; }
+      .row { display: flex; align-items: center; justify-content: space-between; gap: 10px; }
+      label { font-weight: 600; }
+      .hint { color: var(--muted); font-size: 11px; line-height: 1.4; }
+      select, button.linkish {
+        background: var(--card);
+        color: var(--text);
+        border: 1px solid var(--border);
+        border-radius: 8px;
+        padding: 6px 8px;
+        font-size: 12px;
+      }
+      select { min-width: 150px; }
+      .status {
+        padding: 8px 10px;
+        border-radius: 8px;
+        background: var(--card);
+        border: 1px solid var(--border);
+        font-size: 12px;
+      }
+      a { color: var(--accent); text-decoration: none; }
+      a:hover { text-decoration: underline; }
+      input[type="checkbox"] { width: 16px; height: 16px; }
+    </style>
+  </head>
+  <body>
+    <header>
+      <h1 id="title">PrivatePrompt Guard</h1>
+      <div class="brand" id="brand">By AI4Context</div>
+    </header>
+    <main>
+      <div class="status" id="status"></div>
+      <div class="row">
+        <label for="enabled" id="lbl-enabled">Enabled</label>
+        <input type="checkbox" id="enabled" />
+      </div>
+      <div class="row">
+        <label for="sensitivity" id="lbl-sensitivity">Sensitivity</label>
+        <select id="sensitivity">
+          <option value="strict">Strict</option>
+          <option value="balanced" selected>Balanced</option>
+          <option value="relaxed">Relaxed</option>
+        </select>
+      </div>
+      <div class="row">
+        <label for="language" id="lbl-language">Language</label>
+        <select id="language">
+          <option value="auto">Auto</option>
+          <option value="es">Español</option>
+          <option value="en">English</option>
+        </select>
+      </div>
+      <div class="row">
+        <label for="nano" id="lbl-nano">Nano</label>
+        <input type="checkbox" id="nano" checked />
+      </div>
+      <p class="hint" id="hosts-hint"></p>
+      <p class="hint" id="save-note"></p>
+      <a id="privacy" href="privacy-en.html" target="_blank" rel="noopener">Privacy</a>
+    </main>
+    <script type="module" src="/src/popup/main.ts"></script>
+  </body>
+</html>
