@@ -1,12 +1,19 @@
-import { DEFAULT_PREFS, STORAGE_KEY, type Prefs } from './types';
+import { DEFAULT_PREFS, STORAGE_KEY, isFindingType, type Prefs } from './types';
 
 export async function loadPrefs(): Promise<Prefs> {
   try {
     const data = await chrome.storage.local.get(STORAGE_KEY);
     const raw = data[STORAGE_KEY] as Partial<Prefs> | undefined;
-    return { ...DEFAULT_PREFS, ...raw };
+    const enabledTypes = Array.isArray(raw?.enabledTypes)
+      ? raw.enabledTypes.filter(isFindingType)
+      : [...DEFAULT_PREFS.enabledTypes];
+    return {
+      ...DEFAULT_PREFS,
+      ...raw,
+      enabledTypes,
+    };
   } catch {
-    return { ...DEFAULT_PREFS };
+    return { ...DEFAULT_PREFS, enabledTypes: [...DEFAULT_PREFS.enabledTypes] };
   }
 }
 

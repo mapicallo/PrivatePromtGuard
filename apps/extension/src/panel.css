@@ -233,6 +233,35 @@ body {
   color: var(--ink);
 }
 
+.type-fieldset {
+  margin: 0;
+  padding: 10px 12px 8px;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.type-fieldset[hidden] {
+  display: none;
+}
+
+.type-fieldset legend {
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: var(--muted);
+  padding: 0 4px;
+}
+
+.type-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.85rem;
+  font-weight: 500;
+}
+
 input[type='checkbox'] {
   width: 18px;
   height: 18px;

@@ -171,8 +171,8 @@ async function openPanel(fromTab?: chrome.tabs.Tab): Promise<void> {
   };
 
   const attempts: chrome.windows.CreateData[] = [
-    { url: panelUrl, type: 'popup', width: 420, height: 600, focused: true },
-    { url: panelUrl, type: 'normal', width: 440, height: 620, focused: true },
+    { url: panelUrl, type: 'popup', width: 420, height: 720, focused: true },
+    { url: panelUrl, type: 'normal', width: 440, height: 740, focused: true },
   ];
 
   for (const createData of attempts) {

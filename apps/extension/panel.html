@@ -48,8 +48,24 @@
             <option value="strict">Strict</option>
             <option value="balanced" selected>Balanced</option>
             <option value="relaxed">Relaxed</option>
+            <option value="custom">Custom</option>
           </select>
         </label>
+
+        <fieldset id="custom-types" class="type-fieldset" hidden>
+          <legend id="custom-types-hint"></legend>
+          <label class="type-row"><input type="checkbox" data-type="email" /> <span data-type-label="email"></span></label>
+          <label class="type-row"><input type="checkbox" data-type="phone" /> <span data-type-label="phone"></span></label>
+          <label class="type-row"><input type="checkbox" data-type="dni" /> <span data-type-label="dni"></span></label>
+          <label class="type-row"><input type="checkbox" data-type="iban" /> <span data-type-label="iban"></span></label>
+          <label class="type-row"><input type="checkbox" data-type="card" /> <span data-type-label="card"></span></label>
+          <label class="type-row"><input type="checkbox" data-type="jwt" /> <span data-type-label="jwt"></span></label>
+          <label class="type-row"><input type="checkbox" data-type="api_key" /> <span data-type-label="api_key"></span></label>
+          <label class="type-row"><input type="checkbox" data-type="pem" /> <span data-type-label="pem"></span></label>
+          <label class="type-row"><input type="checkbox" data-type="secret_assignment" /> <span data-type-label="secret_assignment"></span></label>
+          <label class="type-row"><input type="checkbox" data-type="nano_sensitive" /> <span data-type-label="nano_sensitive"></span></label>
+          <p class="hint" id="custom-types-empty"></p>
+        </fieldset>
 
         <div class="row">
           <label for="nano" id="lbl-nano">Nano</label>

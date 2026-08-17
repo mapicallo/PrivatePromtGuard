@@ -1,7 +1,7 @@
 import { describe, expect, it } from 'vitest';
 import { detectDeterministic } from './patterns';
 import { redactText } from '../redact';
-import { filterBySensitivity } from '../types';
+import { filterBySensitivity, filterFindings } from '../types';
 
 describe('detectDeterministic', () => {
   it('finds email, api key and IBAN', () => {
@@ -40,5 +40,20 @@ describe('redact + sensitivity', () => {
     const f = detectDeterministic('only mail test@example.com here');
     expect(filterBySensitivity(f, 'balanced')).toHaveLength(0);
     expect(filterBySensitivity(f, 'strict').length).toBeGreaterThan(0);
+  });
+
+  it('custom mode keeps only selected types', () => {
+    const text =
+      'mail test@example.com IBAN ES9121000418450200051332 key sk-abcdefghijklmnopqrstuvwxyz123456';
+    const f = detectDeterministic(text);
+    const onlyKeys = filterFindings(f, {
+      enabled: true,
+      sensitivity: 'custom',
+      language: 'en',
+      nanoAssist: false,
+      enabledTypes: ['api_key'],
+    });
+    expect(onlyKeys.every((x) => x.type === 'api_key')).toBe(true);
+    expect(onlyKeys.length).toBeGreaterThan(0);
   });
 });

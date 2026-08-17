@@ -3,7 +3,7 @@ import { messagesFor } from '../lib/i18n';
 import { nanoAvailable, nanoScan } from '../lib/nano';
 import { loadPrefs, resolveLanguage } from '../lib/prefs';
 import { redactText } from '../lib/redact';
-import { filterBySensitivity, type Prefs } from '../lib/types';
+import { filterFindings, type Prefs } from '../lib/types';
 import { resolveHost, type HostAdapter } from '../hosts';
 import { showOverlay, dismissOverlay } from './overlay';
 
@@ -39,7 +39,7 @@ async function analyze(text: string) {
     }
   }
   const all = detectAll(text, extra);
-  const filtered = filterBySensitivity(all, p.sensitivity);
+  const filtered = filterFindings(all, p);
   return { findings: filtered, nanoUsed, prefs: p };
 }
 

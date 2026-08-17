@@ -29,6 +29,19 @@ export type Messages = {
   footerSupport: string;
   dragHint: string;
   refreshTab: string;
+  sensitivityCustom: string;
+  customTypesHint: string;
+  customTypesEmpty: string;
+  typeEmail: string;
+  typePhone: string;
+  typeDni: string;
+  typeIban: string;
+  typeCard: string;
+  typeJwt: string;
+  typeApiKey: string;
+  typePem: string;
+  typeSecret: string;
+  typeNano: string;
 };
 
 export const es: Messages = {
@@ -52,6 +65,7 @@ export const es: Messages = {
   sensitivityStrict: 'Estricta (incluye emails/teléfonos)',
   sensitivityBalanced: 'Equilibrada (recomendada)',
   sensitivityRelaxed: 'Relajada (solo alto riesgo)',
+  sensitivityCustom: 'Personalizada (elige qué detectar)',
   nanoAssist: 'Usar Gemini Nano si está disponible',
   statusActive: 'Listo en sitios de IA compatibles',
   statusInactivePage: 'Inactivo en esta página (solo ChatGPT, Claude, Gemini)',
@@ -63,6 +77,18 @@ export const es: Messages = {
   footerSupport: 'Apoyar',
   dragHint: 'Arrastra esta ventana para ver el texto del cuadro',
   refreshTab: 'Actualizar pestaña activa',
+  customTypesHint: 'Marca los tipos que quieres avisar al enviar.',
+  customTypesEmpty: 'Si no marcas ninguno, no habrá avisos.',
+  typeEmail: 'Correos electrónicos',
+  typePhone: 'Teléfonos',
+  typeDni: 'DNI / NIE',
+  typeIban: 'IBAN',
+  typeCard: 'Números de tarjeta',
+  typeJwt: 'JWT',
+  typeApiKey: 'API keys y tokens',
+  typePem: 'Claves privadas (PEM)',
+  typeSecret: 'Asignaciones tipo password=',
+  typeNano: 'Posiblemente sensible (IA local)',
 };
 
 export const en: Messages = {
@@ -86,6 +112,7 @@ export const en: Messages = {
   sensitivityStrict: 'Strict (includes emails/phones)',
   sensitivityBalanced: 'Balanced (recommended)',
   sensitivityRelaxed: 'Relaxed (high risk only)',
+  sensitivityCustom: 'Custom (choose what to detect)',
   nanoAssist: 'Use Gemini Nano when available',
   statusActive: 'Ready on supported AI sites',
   statusInactivePage: 'Inactive on this page (ChatGPT, Claude, Gemini only)',
@@ -97,6 +124,18 @@ export const en: Messages = {
   footerSupport: 'Support',
   dragHint: 'Drag this window to see the message box',
   refreshTab: 'Refresh active tab',
+  customTypesHint: 'Tick the types you want to be warned about when sending.',
+  customTypesEmpty: 'If none are ticked, there will be no warnings.',
+  typeEmail: 'Email addresses',
+  typePhone: 'Phone numbers',
+  typeDni: 'DNI / NIE',
+  typeIban: 'IBAN',
+  typeCard: 'Card numbers',
+  typeJwt: 'JWT',
+  typeApiKey: 'API keys and tokens',
+  typePem: 'Private keys (PEM)',
+  typeSecret: 'password= style assignments',
+  typeNano: 'Possibly sensitive (on-device AI)',
 };
 
 export function messagesFor(lang: 'es' | 'en'): Messages {

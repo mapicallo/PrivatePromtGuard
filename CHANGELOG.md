@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.1.4 — 2026-08-17
+
+- Custom sensitivity: choose which finding types to warn about
+
 ## 0.1.3 — 2026-08-17
 
 - Refresh active tab button; status follows the last normal browser window, not the panel itself

@@ -1,7 +1,7 @@
 {
   "manifest_version": 3,
   "name": "PrivatePrompt Guard",
-  "version": "0.1.3",
+  "version": "0.1.4",
   "description": "Private second look before you send prompts to ChatGPT, Claude, or Gemini. Flags emails, IBANs, keys—on your device.",
   "action": {
     "default_title": "PrivatePrompt Guard",
