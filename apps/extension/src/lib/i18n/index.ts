@@ -1,6 +1,9 @@
 export type Messages = {
   extName: string;
   brand: string;
+  byAi4Context: string;
+  langLabel: string;
+  helpOnDemand: string;
   title: string;
   findingsCount: (n: number) => string;
   review: string;
@@ -15,10 +18,6 @@ export type Messages = {
   sensitivityStrict: string;
   sensitivityBalanced: string;
   sensitivityRelaxed: string;
-  language: string;
-  langAuto: string;
-  langEs: string;
-  langEn: string;
   nanoAssist: string;
   statusActive: string;
   statusInactivePage: string;
@@ -26,11 +25,17 @@ export type Messages = {
   hostsHint: string;
   privacy: string;
   saveNote: string;
+  footerByPrefix: string;
+  footerSupport: string;
 };
 
 export const es: Messages = {
   extName: 'PrivatePrompt Guard',
   brand: 'By AI4Context',
+  byAi4Context: 'By AI4Context',
+  langLabel: 'Idioma',
+  helpOnDemand:
+    'Revisa el cuadro de mensaje solo al enviar. No vigilamos tus pestañas en segundo plano.',
   title: 'Posible información sensible',
   findingsCount: (n) => `${n} hallazgo${n === 1 ? '' : 's'}`,
   review: 'Revisar en el cuadro',
@@ -45,22 +50,24 @@ export const es: Messages = {
   sensitivityStrict: 'Estricta (incluye emails/teléfonos)',
   sensitivityBalanced: 'Equilibrada (recomendada)',
   sensitivityRelaxed: 'Relajada (solo alto riesgo)',
-  language: 'Idioma',
-  langAuto: 'Automático',
-  langEs: 'Español',
-  langEn: 'English',
   nanoAssist: 'Usar Gemini Nano si está disponible',
   statusActive: 'Listo en sitios de IA compatibles',
   statusInactivePage: 'Inactivo en esta página (solo ChatGPT, Claude, Gemini)',
   statusDisabled: 'Desactivado — los envíos no se revisan',
   hostsHint: 'Solo actúa en ChatGPT, Claude y Gemini web. El texto no se envía a AI4Context.',
-  privacy: 'Política de privacidad',
+  privacy: 'Privacidad',
   saveNote: 'Los cambios se guardan en este dispositivo.',
+  footerByPrefix: 'por',
+  footerSupport: 'Apoyar',
 };
 
 export const en: Messages = {
   extName: 'PrivatePrompt Guard',
   brand: 'By AI4Context',
+  byAi4Context: 'By AI4Context',
+  langLabel: 'Language',
+  helpOnDemand:
+    'Reviews the message box only when you send. We do not monitor your tabs in the background.',
   title: 'Possible sensitive information',
   findingsCount: (n) => `${n} finding${n === 1 ? '' : 's'}`,
   review: 'Review in the box',
@@ -75,17 +82,15 @@ export const en: Messages = {
   sensitivityStrict: 'Strict (includes emails/phones)',
   sensitivityBalanced: 'Balanced (recommended)',
   sensitivityRelaxed: 'Relaxed (high risk only)',
-  language: 'Language',
-  langAuto: 'Automatic',
-  langEs: 'Español',
-  langEn: 'English',
   nanoAssist: 'Use Gemini Nano when available',
   statusActive: 'Ready on supported AI sites',
   statusInactivePage: 'Inactive on this page (ChatGPT, Claude, Gemini only)',
   statusDisabled: 'Disabled — sends are not reviewed',
   hostsHint: 'Only runs on ChatGPT, Claude, and Gemini web. Text is not sent to AI4Context.',
-  privacy: 'Privacy policy',
+  privacy: 'Privacy',
   saveNote: 'Changes are saved on this device.',
+  footerByPrefix: 'by',
+  footerSupport: 'Support',
 };
 
 export function messagesFor(lang: 'es' | 'en'): Messages {

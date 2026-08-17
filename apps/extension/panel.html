@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>PrivatePrompt Guard</title>
+    <link rel="icon" type="image/png" sizes="48x48" href="./icons/icon48.png" />
+    <link rel="stylesheet" href="./src/panel.css" />
+  </head>
+  <body>
+    <div class="app ppg-shell">
+      <header class="ppg-brand-header">
+        <div class="ppg-brand-row">
+          <div class="ppg-logo">
+            <div class="ppg-logo-icon" aria-hidden="true">
+              <img src="./icons/icon48.png" width="44" height="44" alt="" />
+            </div>
+            <div class="ppg-logo-text">
+              <h1 class="ppg-app-title" id="title">PrivatePrompt Guard</h1>
+              <p class="ppg-app-subtitle" id="brand">By AI4Context</p>
+            </div>
+          </div>
+          <label class="ppg-lang-selector" for="locale-select">
+            <span class="ppg-lang-label" id="lbl-language">Language</span>
+            <select id="locale-select" aria-label="Language">
+              <option value="en">English</option>
+              <option value="es">Español</option>
+            </select>
+          </label>
+        </div>
+      </header>
+
+      <main class="ppg-scroll">
+        <p class="help" id="help"></p>
+        <p class="status" id="status"></p>
+
+        <div class="row">
+          <label for="enabled" id="lbl-enabled">Enabled</label>
+          <input type="checkbox" id="enabled" />
+        </div>
+
+        <label class="field" for="sensitivity">
+          <span id="lbl-sensitivity">Sensitivity</span>
+          <select id="sensitivity">
+            <option value="strict">Strict</option>
+            <option value="balanced" selected>Balanced</option>
+            <option value="relaxed">Relaxed</option>
+          </select>
+        </label>
+
+        <div class="row">
+          <label for="nano" id="lbl-nano">Nano</label>
+          <input type="checkbox" id="nano" checked />
+        </div>
+
+        <p class="hint" id="hosts-hint"></p>
+        <p class="hint" id="save-note"></p>
+      </main>
+
+      <div class="ppg-version-strip" id="version-strip">v0.1.1</div>
+
+      <footer class="ppg-site-footer" role="contentinfo">
+        <div class="ppg-site-footer-inner">
+          <div class="ppg-footer-brand-cluster">
+            <span class="ppg-footer-accent" aria-hidden="true"></span>
+            <img class="ppg-footer-brand-img" src="./icons/icon48.png" width="32" height="32" alt="" />
+          </div>
+          <span class="ppg-footer-by">
+            <span id="footer-by-prefix">by</span> <strong>AI4Context</strong>
+          </span>
+          <span class="ppg-footer-divider" aria-hidden="true"></span>
+          <a
+            class="ppg-footer-support"
+            href="https://www.ai4context.com/mission-support"
+            target="_blank"
+            rel="noopener noreferrer"
+            id="footer-support"
+            >Support</a
+          >
+          <span class="ppg-footer-divider" aria-hidden="true"></span>
+          <a href="#" id="privacy-link" class="ppg-footer-support">Privacy</a>
+        </div>
+      </footer>
+    </div>
+    <script type="module" src="./src/panel.ts"></script>
+  </body>
+</html>

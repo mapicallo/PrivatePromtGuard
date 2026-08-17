@@ -5,7 +5,15 @@
 > Product name: **PrivatePrompt Guard**  
 > Repo folder: `code-PrivatePromtGuard` (matches GitHub `PrivatePromtGuard`)
 
-## Features (v0.1)
+## Features (v0.1.1)
+
+- Intercepts Send / Enter on supported AI sites
+- Deterministic detectors (email, phone, DNI/NIE, IBAN, Luhn cards, JWT, common API keys, PEM, `password=`-style assignments)
+- Optional Gemini Nano assist when Chrome Prompt API is available
+- Overlay: Review · Anonymize & paste · Send anyway · Cancel
+- Sensitivity: strict / balanced / relaxed
+- Floating panel (header, language selector, footer) like the rest of the AI4Context family
+- UI EN/ES · no AI4Context backend for prompt text
 
 - Intercepts Send / Enter on supported AI sites
 - Deterministic detectors (email, phone, DNI/NIE, IBAN, Luhn cards, JWT, common API keys, PEM, `password=`-style assignments)
@@ -23,10 +31,11 @@ npm test
 npm run build
 ```
 
-Load unpacked in Chrome: `apps/extension/dist`
+Load unpacked in Chrome: `apps/extension/dist`  
+Click the toolbar icon to open the floating panel (not a popup).
 
 ```bash
-npm run pack   # → releases/PrivatePromptGuard-v0.1.0.zip
+npm run pack   # → releases/PrivatePromptGuard-v0.1.1.zip
 ```
 
 ## Privacy

@@ -11,5 +11,5 @@
     "isolatedModules": true,
     "noEmit": true
   },
-  "include": ["src/**/*.ts", "popup.html", "vitest.config.ts"]
+  "include": ["src/**/*.ts", "panel.html", "vitest.config.ts"]
 }
