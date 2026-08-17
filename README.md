@@ -5,7 +5,7 @@
 > Product name: **PrivatePrompt Guard**  
 > Repo folder: `code-PrivatePromtGuard` (matches GitHub `PrivatePromtGuard`)
 
-## Features (v0.1.2)
+## Features (v0.1.3)
 
 - Intercepts Send / Enter on supported AI sites
 - Deterministic detectors (email, phone, DNI/NIE, IBAN, Luhn cards, JWT, common API keys, PEM, `password=`-style assignments)
@@ -35,7 +35,7 @@ Load unpacked in Chrome: `apps/extension/dist`
 Click the toolbar icon to open the floating panel (not a popup).
 
 ```bash
-npm run pack   # → releases/PrivatePromptGuard-v0.1.2.zip
+npm run pack   # → releases/PrivatePromptGuard-v0.1.3.zip
 ```
 
 ## Privacy

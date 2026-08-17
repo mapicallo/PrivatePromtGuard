@@ -5,22 +5,19 @@ import type { Prefs, Sensitivity } from './lib/types';
 
 const $ = <T extends HTMLElement>(id: string) => document.getElementById(id) as T;
 
-async function lastBrowserTabUrl(): Promise<string | null> {
+async function lastBrowserTabUrl(refresh = false): Promise<string | null> {
   try {
-    const res = await chrome.runtime.sendMessage({ type: 'ppg.getLastTabUrl' });
+    const res = await chrome.runtime.sendMessage({
+      type: refresh ? 'ppg.refreshTabUrl' : 'ppg.getLastTabUrl',
+    });
     if (typeof res?.url === 'string' && res.url) return res.url;
   } catch {
     /* ignore */
   }
-  try {
-    const [tab] = await chrome.tabs.query({ active: true, lastFocusedWindow: true });
-    return tab?.url ?? null;
-  } catch {
-    return null;
-  }
+  return null;
 }
 
-async function paint(prefs: Prefs): Promise<void> {
+async function paint(prefs: Prefs, refresh = false): Promise<void> {
   const lang = resolveLanguage(prefs);
   const m = messagesFor(lang);
   document.documentElement.lang = lang;
@@ -38,6 +35,7 @@ async function paint(prefs: Prefs): Promise<void> {
   $('footer-by-prefix').textContent = m.footerByPrefix;
   $('footer-support').textContent = m.footerSupport;
   $('privacy-link').textContent = m.privacy;
+  $('refresh-tab-btn').textContent = m.refreshTab;
 
   const sens = $('sensitivity') as HTMLSelectElement;
   sens.options[0].text = m.sensitivityStrict;
@@ -56,7 +54,7 @@ async function paint(prefs: Prefs): Promise<void> {
     return;
   }
 
-  const url = await lastBrowserTabUrl();
+  const url = await lastBrowserTabUrl(refresh);
   if (url && isSupportedAiUrl(url)) {
     statusEl.textContent = m.statusActive;
     statusEl.dataset.kind = 'active';
@@ -92,6 +90,22 @@ async function main(): Promise<void> {
   $('locale-select').addEventListener('change', () => {
     const lang = ($('locale-select') as HTMLSelectElement).value as 'es' | 'en';
     void persistFromUi(lang);
+  });
+
+  $('refresh-tab-btn').addEventListener('click', () => {
+    void (async () => {
+      const btn = $('refresh-tab-btn') as HTMLButtonElement;
+      btn.disabled = true;
+      try {
+        await paint(await loadPrefs(), true);
+      } finally {
+        btn.disabled = false;
+      }
+    })();
+  });
+
+  window.addEventListener('focus', () => {
+    void loadPrefs().then((p) => paint(p, true));
   });
 
   $('privacy-link').addEventListener('click', (e) => {

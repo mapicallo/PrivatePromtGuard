@@ -28,6 +28,7 @@ export type Messages = {
   footerByPrefix: string;
   footerSupport: string;
   dragHint: string;
+  refreshTab: string;
 };
 
 export const es: Messages = {
@@ -61,6 +62,7 @@ export const es: Messages = {
   footerByPrefix: 'por',
   footerSupport: 'Apoyar',
   dragHint: 'Arrastra esta ventana para ver el texto del cuadro',
+  refreshTab: 'Actualizar pestaña activa',
 };
 
 export const en: Messages = {
@@ -94,6 +96,7 @@ export const en: Messages = {
   footerByPrefix: 'by',
   footerSupport: 'Support',
   dragHint: 'Drag this window to see the message box',
+  refreshTab: 'Refresh active tab',
 };
 
 export function messagesFor(lang: 'es' | 'en'): Messages {

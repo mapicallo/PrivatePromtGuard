@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.1.3 — 2026-08-17
+
+- Refresh active tab button; status follows the last normal browser window, not the panel itself
+
 ## 0.1.2 — 2026-08-17
 
 - Findings overlay is draggable (grab the title bar) and no longer dims the page, so the prompt stays visible
