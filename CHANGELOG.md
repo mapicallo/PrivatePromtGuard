@@ -3,6 +3,7 @@
 ## 0.1.4 — 2026-08-17
 
 - Custom sensitivity: choose which finding types to warn about
+- CWS package: homepage URL, privacy copy, zip without source maps
 
 ## 0.1.3 — 2026-08-17
 

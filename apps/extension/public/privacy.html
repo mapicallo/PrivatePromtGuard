@@ -12,24 +12,27 @@
 </head>
 <body>
   <h1>Política de privacidad — PrivatePrompt Guard</h1>
-  <p><strong>By AI4Context</strong> · Versión 0.1 · Actualizado: 16 agosto 2026</p>
+  <p><strong>By AI4Context</strong> · Versión 0.1.4 · Actualizado: 17 agosto 2026</p>
   <p>PrivatePrompt Guard es una extensión de Chrome que revisa el texto del cuadro de mensaje <em>justo antes de enviarlo</em> en ChatGPT, Claude o Gemini web, para avisar de posibles datos sensibles. El análisis se hace en tu dispositivo.</p>
 
   <h2>Qué datos se procesan</h2>
   <ul>
     <li>El texto del compositor de la página de IA, solo en el momento en que intentas enviar.</li>
-    <li>Preferencias (activado, sensibilidad, idioma, ayuda Nano) en <code>chrome.storage.local</code>.</li>
+    <li>Preferencias (activado, sensibilidad, tipos a detectar, idioma, ayuda Nano) en <code>chrome.storage.local</code>.</li>
+    <li>La URL de la última pestaña normal del navegador, en la sesión local, para que el panel muestre si el sitio es compatible. No se lee el contenido de esa pestaña para el estado.</li>
   </ul>
 
   <h2>Qué no hacemos</h2>
   <ul>
     <li>No enviamos el contenido de tus prompts a servidores de AI4Context.</li>
-    <li>No vigilamos pestañas en segundo plano ni leemos otras webs.</li>
+    <li>No escaneamos otras webs ni leemos tus chats en segundo plano.</li>
     <li>No vendemos datos ni usamos publicidad basada en tus prompts.</li>
   </ul>
 
   <h2>Permisos</h2>
-  <p>La extensión solo pide acceso a los dominios de ChatGPT, Claude y Gemini necesarios para leer el compositor e interceptar el envío, más almacenamiento local y la pestaña activa al abrir el popup.</p>
+  <p><strong>storage</strong> — guardar ajustes en este dispositivo.</p>
+  <p><strong>tabs / activeTab</strong> — saber qué pestaña del navegador usabas al abrir o actualizar el panel, para el estado de sitio compatible. No se inyecta en sitios arbitrarios.</p>
+  <p><strong>Acceso a hosts</strong> — solo ChatGPT, Claude y Gemini web, para leer el cuadro de mensaje e interceptar el envío.</p>
 
   <h2>IA local (opcional)</h2>
   <p>Si activas la ayuda de Gemini Nano (Prompt API de Chrome) y está disponible en tu equipo, algunos fragmentos pueden clasificarse en el dispositivo. Si Nano no está disponible, solo se usan reglas deterministas.</p>

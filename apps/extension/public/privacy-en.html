@@ -12,24 +12,27 @@
 </head>
 <body>
   <h1>Privacy policy — PrivatePrompt Guard</h1>
-  <p><strong>By AI4Context</strong> · Version 0.1 · Updated: 16 August 2026</p>
+  <p><strong>By AI4Context</strong> · Version 0.1.4 · Updated: 17 August 2026</p>
   <p>PrivatePrompt Guard is a Chrome extension that reviews the text in the message box <em>just before you send</em> on ChatGPT, Claude, or Gemini web, to flag possible sensitive data. Analysis runs on your device.</p>
 
   <h2>What is processed</h2>
   <ul>
     <li>Composer text on the AI page, only when you try to send.</li>
-    <li>Preferences (enabled, sensitivity, language, Nano assist) in <code>chrome.storage.local</code>.</li>
+    <li>Preferences (enabled, sensitivity, selected finding types, language, Nano assist) in <code>chrome.storage.local</code>.</li>
+    <li>The URL of the last normal browser tab, stored locally in the session, so the floating panel can show whether you are on a supported AI site. Tab content is not read for that status.</li>
   </ul>
 
   <h2>What we do not do</h2>
   <ul>
     <li>We do not send your prompt content to AI4Context servers.</li>
-    <li>We do not monitor tabs in the background or read unrelated sites.</li>
+    <li>We do not scan unrelated websites or watch tabs in the background to read your chats.</li>
     <li>We do not sell data or run ads based on your prompts.</li>
   </ul>
 
   <h2>Permissions</h2>
-  <p>The extension only requests access to ChatGPT, Claude, and Gemini domains needed to read the composer and intercept send, plus local storage and the active tab when you open the popup.</p>
+  <p><strong>storage</strong> — save your settings on this device.</p>
+  <p><strong>tabs / activeTab</strong> — know which browser tab you were using when you open or refresh the panel, so the status can say whether that site is supported. Not used to inject into arbitrary sites.</p>
+  <p><strong>Host access</strong> — only ChatGPT, Claude, and Gemini web, to read the message box and pause send when you try to submit.</p>
 
   <h2>Optional on-device AI</h2>
   <p>If you enable Gemini Nano assist (Chrome Prompt API) and it is available, some fragments may be classified on-device. If Nano is unavailable, only deterministic rules run.</p>

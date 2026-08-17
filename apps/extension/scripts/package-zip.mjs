@@ -7,9 +7,18 @@ const extRoot = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..')
 const dist = path.join(extRoot, 'dist');
 const repoRoot = path.resolve(extRoot, '../..');
 const releases = path.join(repoRoot, 'releases');
-const manifest = JSON.parse(fs.readFileSync(path.join(dist, 'manifest.json'), 'utf8'));
+const manifestPath = path.join(dist, 'manifest.json');
+
+if (!fs.existsSync(manifestPath)) {
+  console.error('Missing dist/. Run npm run build first.');
+  process.exit(1);
+}
+
+const manifest = JSON.parse(fs.readFileSync(manifestPath, 'utf8'));
 const version = manifest.version || '0.0.0';
-const outFile = path.join(releases, `PrivatePromptGuard-v${version}.zip`);
+const fileName = `PrivatePromptGuard-v${version}.zip`;
+const outFile = path.join(releases, fileName);
+const copyFile = path.join(extRoot, fileName);
 
 fs.mkdirSync(releases, { recursive: true });
 await new Promise((resolve, reject) => {
@@ -18,7 +27,15 @@ await new Promise((resolve, reject) => {
   output.on('close', resolve);
   archive.on('error', reject);
   archive.pipe(output);
-  archive.directory(dist, false);
+  archive.glob('**/*', {
+    cwd: dist,
+    ignore: ['**/*.map'],
+    dot: false,
+  });
   archive.finalize();
 });
-console.log('[pack]', outFile);
+fs.copyFileSync(outFile, copyFile);
+const sizeMb = (fs.statSync(outFile).size / (1024 * 1024)).toFixed(2);
+console.log(`[pack] Chrome Web Store zip (${sizeMb} MiB)`);
+console.log(`[pack] ${outFile}`);
+console.log(`[pack] ${copyFile}`);
