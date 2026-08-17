@@ -27,6 +27,7 @@ export type Messages = {
   saveNote: string;
   footerByPrefix: string;
   footerSupport: string;
+  dragHint: string;
 };
 
 export const es: Messages = {
@@ -59,6 +60,7 @@ export const es: Messages = {
   saveNote: 'Los cambios se guardan en este dispositivo.',
   footerByPrefix: 'por',
   footerSupport: 'Apoyar',
+  dragHint: 'Arrastra esta ventana para ver el texto del cuadro',
 };
 
 export const en: Messages = {
@@ -91,6 +93,7 @@ export const en: Messages = {
   saveNote: 'Changes are saved on this device.',
   footerByPrefix: 'by',
   footerSupport: 'Support',
+  dragHint: 'Drag this window to see the message box',
 };
 
 export function messagesFor(lang: 'es' | 'en'): Messages {

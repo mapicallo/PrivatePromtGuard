@@ -24,28 +24,41 @@ export function showOverlay(opts: {
   return new Promise((resolve) => {
     const host = document.createElement('div');
     host.id = HOST_ID;
-    host.style.cssText = 'all:initial;position:fixed;inset:0;z-index:2147483646;';
+    host.style.cssText = 'all:initial;position:fixed;inset:0;z-index:2147483646;pointer-events:none;';
     const shadow = host.attachShadow({ mode: 'closed' });
 
     const style = document.createElement('style');
     style.textContent = `
       :host { all: initial; }
       * { box-sizing: border-box; font-family: system-ui, Segoe UI, Roboto, sans-serif; }
-      .backdrop {
+      .stage {
         position: fixed; inset: 0;
-        background: rgba(15, 23, 42, 0.55);
-        display: flex; align-items: center; justify-content: center;
-        padding: 16px;
+        pointer-events: none;
       }
       .card {
-        width: min(440px, 100%);
+        pointer-events: auto;
+        position: fixed;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+        width: min(440px, calc(100vw - 24px));
         background: #0f172a;
         color: #e2e8f0;
         border: 1px solid #334155;
         border-radius: 12px;
         padding: 18px 18px 14px;
+        box-shadow: 0 18px 40px rgba(15, 23, 42, 0.35);
       }
-      .hdr { display: flex; justify-content: space-between; gap: 8px; align-items: baseline; margin-bottom: 6px; }
+      .card.is-free {
+        transform: none;
+      }
+      .hdr {
+        display: flex; justify-content: space-between; gap: 8px; align-items: baseline;
+        margin: -6px -6px 6px; padding: 8px 6px;
+        cursor: grab;
+        user-select: none;
+      }
+      .hdr:active { cursor: grabbing; }
       .name { font-size: 15px; font-weight: 650; color: #f8fafc; }
       .brand { font-size: 11px; color: #94a3b8; }
       .title { font-size: 14px; font-weight: 600; margin: 8px 0 4px; }
@@ -75,10 +88,10 @@ export function showOverlay(opts: {
     `;
 
     const wrap = document.createElement('div');
-    wrap.className = 'backdrop';
+    wrap.className = 'stage';
     wrap.innerHTML = `
-      <div class="card" role="dialog" aria-modal="true" aria-labelledby="ppg-title">
-        <div class="hdr">
+      <div class="card" role="dialog" aria-modal="false" aria-labelledby="ppg-title">
+        <div class="hdr" title="${escapeHtml(opts.messages.dragHint)}">
           <div class="name">${escapeHtml(opts.messages.extName)}</div>
           <div class="brand">${escapeHtml(opts.messages.brand)}</div>
         </div>
@@ -111,9 +124,6 @@ export function showOverlay(opts: {
       resolve({ action });
     };
 
-    wrap.addEventListener('click', (e) => {
-      if (e.target === wrap) finish('cancel');
-    });
     wrap.querySelectorAll('button[data-act]').forEach((btn) => {
       btn.addEventListener('click', (e) => {
         e.preventDefault();
@@ -123,9 +133,62 @@ export function showOverlay(opts: {
       });
     });
 
+    const card = wrap.querySelector('.card') as HTMLElement;
+    const handle = wrap.querySelector('.hdr') as HTMLElement;
+    enableDrag(card, handle);
+
     shadow.append(style, wrap);
     document.documentElement.appendChild(host);
   });
+}
+
+function enableDrag(card: HTMLElement, handle: HTMLElement): void {
+  let dragging = false;
+  let startX = 0;
+  let startY = 0;
+  let origLeft = 0;
+  let origTop = 0;
+
+  const onMove = (e: PointerEvent) => {
+    if (!dragging) return;
+    const dx = e.clientX - startX;
+    const dy = e.clientY - startY;
+    const w = card.offsetWidth;
+    const h = card.offsetHeight;
+    const left = clamp(origLeft + dx, 8, window.innerWidth - w - 8);
+    const top = clamp(origTop + dy, 8, window.innerHeight - h - 8);
+    card.style.left = `${left}px`;
+    card.style.top = `${top}px`;
+  };
+
+  const onUp = (e: PointerEvent) => {
+    if (!dragging) return;
+    dragging = false;
+    handle.releasePointerCapture(e.pointerId);
+    window.removeEventListener('pointermove', onMove);
+    window.removeEventListener('pointerup', onUp);
+  };
+
+  handle.addEventListener('pointerdown', (e) => {
+    if (e.button !== 0) return;
+    e.preventDefault();
+    const rect = card.getBoundingClientRect();
+    card.classList.add('is-free');
+    card.style.left = `${rect.left}px`;
+    card.style.top = `${rect.top}px`;
+    origLeft = rect.left;
+    origTop = rect.top;
+    startX = e.clientX;
+    startY = e.clientY;
+    dragging = true;
+    handle.setPointerCapture(e.pointerId);
+    window.addEventListener('pointermove', onMove);
+    window.addEventListener('pointerup', onUp);
+  });
+}
+
+function clamp(n: number, min: number, max: number): number {
+  return Math.min(max, Math.max(min, n));
 }
 
 function escapeHtml(s: string): string {

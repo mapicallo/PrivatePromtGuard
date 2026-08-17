@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.1.2 — 2026-08-17
+
+- Findings overlay is draggable (grab the title bar) and no longer dims the page, so the prompt stays visible
+
 ## 0.1.1 — 2026-08-17
 
 - Floating, movable, resizable panel (AI4Context family shell)
